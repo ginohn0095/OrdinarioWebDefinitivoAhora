@@ -1,0 +1,68 @@
+﻿@model OrdinarioWebDefinitivoAhora.Models.MemoModel
+
+@{
+    ViewData["Title"] = "Detalle del Memorándum";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">MEMORÁNDUM</h2>
+    <hr />
+
+    <!-- FOLIO -->
+    <p>
+        <strong>Folio:</strong>
+        @{
+            // Formato: 001 / 2025
+            string folioNumero = Model.Folio != null ? Model.Folio.Number.ToString("D3") : "---";
+            string folioAno = Model.Folio != null ? Model.Folio.Year.ToString() : "---";
+        }
+        @folioNumero / @folioAno
+    </p>
+
+    <p><strong>Fecha de Registro:</strong> @Model.FechaRegistro.ToString("dd/MM/yyyy")</p>
+
+    <p><strong>De:</strong> @Model.De</p>
+    <p><strong>Para:</strong> @Model.Para</p>
+
+    <p><strong>Asunto:</strong></p>
+    <p>@Model.Asunto</p>
+
+    <p><strong>Estatus:</strong> @Model.Estatus</p>
+
+    <!-- CANCELACIONES -->
+    @if (Model.cancelados != null && Model.cancelados.Any())
+    {
+        <hr />
+        <h4 class="text-danger">Cancelaciones</h4>
+        <ul>
+            @foreach (var c in Model.cancelados)
+            {
+                <li>
+                    <strong>Usuario:</strong> @c.UsuarioCancela |
+                    <strong>Motivo:</strong> @c.Motivo |
+                    <strong>Fecha:</strong> @c.Fecha.ToString("dd/MM/yyyy HH:mm")
+                </li>
+            }
+        </ul>
+    }
+
+    <!-- Pie estilo GER -->
+    <hr />
+    <div class="text-end text-secondary fw-bold">
+        @{
+            string folioTexto = Model.Folio != null
+            ? Model.Folio.Number.ToString("D3")
+            : "---";
+
+            string yearTexto = Model.Folio != null
+            ? Model.Folio.Year.ToString()
+            : "---";
+        }
+
+        GER | @folioTexto | @yearTexto
+    </div>
+
+    <hr />
+
+    <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Regresar</a>
+</div>

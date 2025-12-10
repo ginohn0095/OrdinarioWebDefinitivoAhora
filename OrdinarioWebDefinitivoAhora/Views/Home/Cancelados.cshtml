@@ -1,0 +1,46 @@
+﻿@model List<OrdinarioWebDefinitivoAhora.Models.MemoModel>
+
+@{
+    ViewData["Title"] = "Memos Cancelados";
+    Layout = null;
+}
+
+<h2>Memos Cancelados</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Folio</th>
+            <th>Año</th>
+            <th>De</th>
+            <th>Para</th>
+            <th>Fecha Registro</th>
+            <th>Asunto</th>
+            <th>Usuario Registro</th>
+            <th>Usuario Canceló</th>
+            <th>Motivo Cancelación</th>
+            <th>Fecha Cancelación</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var memo in Model)
+        {
+            var ultimaCancel = memo.cancelados?
+            .OrderByDescending(c => c.Fecha)
+            .FirstOrDefault();
+
+            <tr>
+                <td>@memo.Folio?.Number.ToString("D3")</td>
+                <td>@memo.Folio?.Year</td>
+                <td>@memo.De</td>
+                <td>@memo.Para</td>
+                <td>@memo.FechaRegistro.ToString("dd/MM/yyyy")</td>
+                <td>@memo.Asunto</td>
+                <td>@memo.UsuarioRegistro</td>
+                <td>@ultimaCancel?.UsuarioCancela</td>
+                <td>@ultimaCancel?.Motivo</td>
+                <td>@ultimaCancel?.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,53 @@
+﻿@model OrdinarioWebDefinitivoAhora.Models.MemoModel
+
+@{
+    ViewData["Title"] = "Registrar Memorándum";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4 text-primary">Registrar Memorándum</h2>
+
+    <form asp-controller="Home" asp-action="Create" method="post">
+
+        <input type="hidden" asp-for="FechaRegistro" />
+
+        <div class="mb-3">
+            <label class="form-label">De:</label>
+            <input asp-for="De" class="form-control" required />
+            <span asp-validation-for="De" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Para:</label>
+            <input asp-for="Para" class="form-control" required />
+            <span asp-validation-for="Para" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Asunto:</label>
+            <textarea asp-for="Asunto" rows="3" class="form-control" required></textarea>
+            <span asp-validation-for="Asunto" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="Contenido" class="form-label">Contenido del memorándum</label>
+            <textarea asp-for="Contenido" class="form-control" rows="6"></textarea>
+            <span asp-validation-for="Contenido" class="text-danger"></span>
+        </div>
+
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-success">Guardar Memorándum</button>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

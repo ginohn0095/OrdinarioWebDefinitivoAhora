@@ -1,0 +1,25 @@
+﻿@model OrdinarioWebDefinitivoAhora.Models.MemoModel
+
+@{
+    ViewData["Title"] = "Cancelar Memorándum";
+}
+
+<div class="container mt-4">
+    <h2 class="text-danger">Cancelar Memorándum</h2>
+    <hr />
+
+    <p><strong>Folio:</strong> @Model.Folio?.Number ?? "---" / @Model.Folio?.Year ?? "---"</p>
+    <p><strong>Asunto:</strong> @Model.Asunto</p>
+    <p><strong>De:</strong> @Model.De</p>
+    <p><strong>Para:</strong> @Model.Para</p>
+
+    <form asp-action="ConfirmarCancelacion" method="post">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <div class="mb-3">
+            <label class="form-label">Motivo de Cancelación</label>
+            <textarea name="motivo" class="form-control" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-danger">Confirmar Cancelación</button>
+        <a asp-controller="Home" asp-action="Consultas" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
