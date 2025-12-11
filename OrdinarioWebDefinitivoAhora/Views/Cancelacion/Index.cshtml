@@ -1,0 +1,37 @@
+@model List<OrdinarioWebDefinitivoAhora.Models.CancelacionModel>
+
+<h2>Cancelaciones registradas</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Folio</th>
+            <th>Año</th>
+            <th>De</th>
+            <th>Para</th>
+            <th>Fecha Registro</th>
+            <th>Asunto</th>
+            <th>Usuario Registro</th>
+            <th>Usuario Canceló</th>
+            <th>Motivo</th>
+            <th>Fecha Cancelación</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@(c.Memo?.Folio?.Number.ToString("D3") ?? "---")</td>
+                <td>@(c.Memo?.Folio?.Year.ToString() ?? "---")</td>
+                <td>@c.Memo?.De</td>
+                <td>@c.Memo?.Para</td>
+                <td>@(c.Memo != null ? c.Memo.FechaRegistro.ToString("dd/MM/yyyy") : "---")</td>
+                <td>@c.Memo?.Asunto</td>
+                <td>@c.Memo?.UsuarioRegistro</td>
+                <td>@c.UsuarioCancela</td>
+                <td>@c.Motivo</td>
+                <td>@c.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>

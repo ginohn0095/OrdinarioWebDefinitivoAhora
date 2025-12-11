@@ -66,5 +66,17 @@ namespace OrdinarioWebDefinitivoAhora.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Cancelados()
+        {
+            var memos = _context.Memos
+                .Include(m => m.Folio)
+                .Include(m => m.cancelados)
+                .Where(m => m.Estatus == "Cancelado")
+                .OrderByDescending(m => m.FechaRegistro)
+                .ToList();
+
+            return View("~/Views/Home/Cancelados.cshtml", memos);
+        }
     }
 }

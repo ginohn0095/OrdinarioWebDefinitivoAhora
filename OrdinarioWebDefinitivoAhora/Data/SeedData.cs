@@ -32,7 +32,7 @@ namespace OrdinarioWebDefinitivoAhora.Data
 
                 foreach (var u in users)
                 {
-                    u.PasswordHash = hasher.HashPassword(u, "Pass123!");
+                    u.PasswordHash = hasher.HashPassword(u, "admin");
                     context.Users.Add(u);
                 }
 

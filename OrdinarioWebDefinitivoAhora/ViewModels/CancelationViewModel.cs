@@ -8,7 +8,7 @@ namespace OrdinarioWebDefinitivoAhora.ViewModels
 
         public int Id { get; set; }
         public int MemoId { get; set; }           
-        public MemoModel? Memo { get; set; }       
+       
         public string UsuarioCancelo { get; set; } = string.Empty;
         public string MotivoCancelacion { get; set; } = string.Empty;
         public DateTime FechaCancelacion { get; set; }

@@ -15,6 +15,6 @@ namespace OrdinarioWebDefinitivoAhora.ViewModels
         public DateTime FechaRegistro { get; set; }
         public string? Estatus { get; set; } // Activo o Cancelado
         public string? UsuarioRegistro { get; set; }
-        public ICollection<CancelacionModel>? Cancelaciones { get; set; }
+        public ICollection<MemoViewModel>? Cancelaciones { get; set; }
     }
 }
